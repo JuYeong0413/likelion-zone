@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% block content %} <!DOCTYPE html>
+<div class="container">
+	<h1 class="content-name-htj">모임개설하기</h1>
+	<form class="form-horizontal" action="{% url 'meetings:create' %}" method="POST">
+		 {% csrf_token %} <br>
+		</br>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">모임구분</label>
+			<div class="col-xs-2">
+				<select class="form-control" name="category">
+					<option value="스터디">스터디</option>
+					<option value="강의">강의</option>
+					<option value="번개모임">번개모임</option>
+					<option value="그외">그외</option>
+				</select>
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">글제목</label>
+			<div class="col-xs-3">
+				<input type="name" class="form-control" id="inputEmail3" placeholder="title" name="title" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">시간</label>
+			<div class="col-xs-2">
+				<input type="datetime" class="form-control" id="inputEmail3" placeholder="00:00 ~ 00:00" name="meeting_time" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">장소</label>
+			<div class="col-xs-2">
+				<input type="place" class="form-control" id="inputEmail3" placeholder="장소" name="meeting_place" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">최소인원</label>
+			<div class="col-xs-1">
+				<input type="number" class="form-control" id="inputEmail3" placeholder="min" name="min_number" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">최대인원</label>
+			<div class="col-xs-1">
+				<input type="number" class="form-control" id="inputEmail3" placeholder="max" name="max_number" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">모임설명</label>
+			<div class="col-xs-5">
+				<textarea class="form-control" rows="6" name="description" placeholder="explain" required></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputPassword3" class="col-sm-1 control-label">암호설정</label>
+			<div class="col-xs-2">
+				<input type="text" class="form-control" id="inputPassword3" name="password" placeholder="글 수정 및 삭제 시 필요" required>
+			</div>
+		</div>
+		<hr class="divider">
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">개설자 이름</label>
+			<div class="col-xs-1">
+				<input type="datetime" class="form-control" id="inputEmail3" name="writer" placeholder="name" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">이메일</label>
+			<div class="col-xs-2">
+				<input type="datetime" class="form-control" id="inputEmail3" name="writer_email" placeholder="@likelion.org" required>
+			</div>
+		</div>
+		<hr class="divider">
+		<div class="form-group">
+			<div class="col-sm-offset-1 col-sm-1">
+				<button type="submit" class="btn btn-outline-secondary btntj">Submit</button>
+			</div>
+		</div>
+	</form>
+</div>
+{% endblock %}

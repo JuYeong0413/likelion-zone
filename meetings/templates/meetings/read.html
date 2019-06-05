@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+   <h1 class="content-name-htj">{{ meeting.title }}</h1>
+    <table class="table table-striped table-htj">
+        <tbody>
+            <tr>
+                <th>작 성 자 : </th>
+                <td>{{ meeting.writer }}</td>
+                 <th>모임구분 : </th>
+                <td>{{meeting.category}}</td>
+            </tr>
+            
+            <tr>
+               <th>최소인원 : </th>
+                <td>{{ meeting.min_number }}</td>  
+               <th>최대인원 : </th>
+                <td>{{ meeting.max_number }}</td> 
+            </tr>
+            
+            <tr>
+               <th>진행시간 : </th>
+                <td>{{ meeting.meeting_time }}</td>
+               <th>진행장소 : </th>
+                <td>{{ meeting.meeting_place }}</td>    
+            </tr>
+            
+            <tr>
+               <th>신청인원 : </th>
+                <td>{{ meeting.current_number }}</td>
+               <th>이메일 : </th>
+                <td>{{ meeting.writer_email }}</td>
+            </tr>
+            
+            <tr>
+                <div class="col-12">
+                <th>모임설명 : </th>
+                <td colspan="12" style="text-align:left">{{ meeting.description|linebreaks }}</td>    
+                </div>
+            </tr>   
+        </tbody>
+</table>
+<div class="both-sides-htj">
+    <div>
+        <a class="readbutton-gtj" href="{% url 'meetings:verification' %}?action=show_participants&id={{ meeting.pk }}">신청자 명단 확인</a>
+        <a class="readbutton-gtj" href="{% url 'meetings:join_page' meeting.id %}">모임 참여 신청하기</a>
+    </div>
+    <div>
+        <a class="readbutton-gtj" href="{% url 'meetings:verification' %}?action=edit&id={{ meeting.pk }}">수정</a>
+        <a class="readbutton-gtj" href="{% url 'meetings:verification' %}?action=delete&id={{ meeting.pk }}">삭제</a>
+    </div> 
+</div>
+</div>
+
+
+{% endblock %}

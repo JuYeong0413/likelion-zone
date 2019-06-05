@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--여기다가 넣으면 되영!-->
+<div class="container">
+    <br>
+    <div class="row">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+          <form action ="{% url 'meetings:board' %}" method = "POST">
+              {% csrf_token %}
+              <textarea name='text' class="form-control" required></textarea>
+              <input type="submit" class="readbutton-gtj form-control" value="등록">
+          </form>
+     </div>
+    </div>
+    
+    {%for board in boards%}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{board.text}}</h5>
+     </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+
+    
+</div>
+<style>
+    textarea{
+        width:100%;
+        resize:none;
+    }
+</style>
+{% endblock %}

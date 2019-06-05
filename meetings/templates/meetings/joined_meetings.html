@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+	<h1 class="content-name-htj">내가 신청한 모임</h1>
+	<div id="chr-center-gtj">
+		<h3 class='chr'>참여신청한 모임을 확인하기 위해</h3>
+		<h3 class='chr'>이메일 주소를 입력해주세요</h3>
+	</div>
+	<div class="titlechr">
+	</div>
+	<form class="form-horizontal" action="{% url 'meetings:joined_meetings' %}" method="POST">
+		 {% csrf_token %}
+		<div class="form-group row">
+			<div class="input-group">
+				<div class="col-6">
+					<div class="input-group col-12">
+						<input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" required>
+						<div class="input-group-append" id="button-addon4">
+							<input type="submit" class="btn btn-outline-secondary btntj" value="확인"></button>
+							<a href="{% url 'meetings:list' %}" class="btn btn-outline-secondary btntj">취소</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+{% endblock %}

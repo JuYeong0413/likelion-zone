@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+    
+{% block content %}
+<div class="container">
+        <h1 class="content-name-htj" class="col-12">모임 목록</h1>
+        <h3 class="sub-content-name-htj col-12">현재 개설되어 있는 모임 목록입니다.</h3>
+    <br>
+    <div class="row">
+        <!--테이블 위 버튼셋-->
+        <div class="input-group col">
+            <button class="btn-outline-secondary btn btntj" type="button">
+                <a style="text-decoration:none; color:black" 
+                href="{% url 'meetings:create' %}">모임개설하기</a>
+            </button>
+        </div>
+        <form action="{% url 'meetings:search' %}">
+            <div class="input-group col-12">     
+                <input type="text" class="form-control" placeholder="검색어" name="search">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary btntj">
+                        검색
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <table class="table table-bordered table-htj">
+        <thead>
+            <tr class="tr-list-htj">
+                <th width="8%">글번호</th>
+                <th width="12%">모임종류</th>
+                <th width="35%">제목</th>
+                <th width="12%">작성자</th>
+                <th width="20%">게시일</th>
+                <th width="12%">조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+        <!--django 데이터--->
+        {% for meeting in meetings %}
+        <tr>
+            <td>{{ meeting.id }}</td>
+            <td>{{ meeting.category }}</td>
+            <td><a href="{% url 'meetings:read' meeting.id %}">{{ meeting.title }}</a></td>
+            <td>{{ meeting.writer }}</td>
+            <td>{{ meeting.created_at }}</td>
+            <td>{{ meeting.view_count }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<button type="button" onclick="topFunction()" class="scrollBtn" id="myBtn">Top</button>
+
+{% endblock %}

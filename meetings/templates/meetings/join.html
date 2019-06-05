@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+        
+    <h1 class="content-name-htj">모임 참여</h1>
+    <table class="table table-striped row-head-htj">
+        <form action="{% url 'meetings:join' meeting.id %}" method="POST">
+            {% csrf_token %}
+        <tbody>
+            <tr>
+                <th>모임제목 : </th>
+                <td>{{meeting.title}}</td>
+                <th></th>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <th>이름 : </th>
+                <td><input type="text" class="form-control" name="name" placeholder="이름"></td>  
+                <th>이메일 : </th>
+                <td><input type="text" class="form-control" name="email" placeholder="이메일"></td> 
+            </tr>
+            
+            <tr>
+                <th>소속학교 : </th>
+                <td><input type="text" class="form-control" name="school" placeholder="학교"></td>  
+                <th></th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>참여동기 : </th>
+                <div class="col-12">
+                <td colspan="12">
+                    <textarea class="form-control" name="motive" style="width: 100%; resize:none; height:20em;" placeholder="참여동기를 입력해주세요."></textarea>
+                </td>
+                </div>
+            </tr>
+            <tr></tr>
+            <tr>               
+            <th></th>
+            <td></td>
+            <th></th>
+            <div class="col-12">
+                <td style="align-contents:right">
+                    <button class="btn btn btn-outline-secondary" type="submit">참석요청</button>
+                    <button class="btn btn btn-outline-secondary" type="button">
+                        <a style="text-decoration:none; color:black" 
+                        href="{% url 'meetings:list' %}">취소</a>
+                    </button>
+                </td>
+            </div>
+            </tr>
+        </tbody>
+        </form>
+    </table>
+
+</div>
+
+{% endblock %}

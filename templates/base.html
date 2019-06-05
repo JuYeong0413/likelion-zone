@@ -1,0 +1,74 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- favicon -->
+    <link rel="shortcut icon" href="https://likelion.net/assets/favicons/favicon-841c731d4bf227cdbfe4fe4245d7750b2c18c37f61810aa6100de9174db89e4f.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style-gtj.css' %}">
+    <link rel="stylesheet" href="{% static 'css/scrollbtn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lulu-chr.css' %}">
+    
+    <!-- Javascirpt -->
+    <script type="text/javascript" src="{% static 'js/scrollbtn.js' %}"></script>
+    
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<link href="ardi.css" rel="stylesheet">
+	
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'> 
+    
+
+    <title>멋사ZONE</title>
+  </head>
+  <body>
+      <!-- navbar -->
+      <div class="header-wrapper-gtj">
+        
+            <a href="{% url 'main' %}"><img id="logosize"src="{% static 'images/logo.png' %}"></img></a>
+            <a href="{% url 'meetings:list' %}"><h1 id="head1-gtj">모임목록</h1></a>    
+            <a href="{% url 'meetings:create' %}"><h1 id="head2-gtj">모임 개설하기</h1></a>
+            <a href="{%url 'meetings:board'%}"><h1 id="head2-gtj">모임 개설요청</h1></a>
+            <a href="{% url 'meetings:joined_meetings' %}"><h1 id="head3-gtj">내가 신청한 모임</h1></a>
+      </div>
+      
+    
+      
+        
+      <div>
+      {% block content %}
+      
+      {% endblock %}
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+  <style>
+    h1{
+      margin-top:10px;
+    }
+  </style>
+</html>

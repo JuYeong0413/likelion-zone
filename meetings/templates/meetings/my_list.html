@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<div id="totop-gtj">
+    <h1 class="content-name-htj">참여신청한 모임 목록</h1>
+    <h3 class="sub-content-name-htj">{{ email }}님이 참여신청하신 모임 목록입니다.</h3>
+    
+    <div id="top-htj" class="container">
+    <!--<div class="row">-->
+    <!--    <h1 class="content-name-htj" class="col-12">참여한 모임 목록</h1>-->
+    <!--    <h3 class="sub-content-name-htj col-12">현재 참여되어 있는 모임 목록입니다.</h3>-->
+    <!--</div>-->
+    <br>
+    <!--<div class="row">-->
+        <!--테이블 위 버튼셋-->
+    <!--    <div class="input-group col">-->
+    <!--        <button class="btn btn-outline-secondary" type="button">-->
+    <!--            <a style="text-decoration:none; color:black" -->
+    <!--            href="{% url 'meetings:create' %}">모임개설하기</a>-->
+    <!--        </button>-->
+    <!--    </div>-->
+    <!--    <form action="{% url 'meetings:search' %}">-->
+    <!--        <div class="input-group col-12">     -->
+    <!--            <input type="text" class="form-control" placeholder="검색어" name="search">-->
+    <!--            <div class="input-group-append">-->
+    <!--                <button class="btn btn-outline-secondary" type="submit">-->
+    <!--                    검색-->
+    <!--                </button>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </form>-->
+    <!--</div>-->
+    <br>
+    <table class="table table-bordered table-htj">
+        <thead>
+            <tr class="tr-list-htj">
+                <th width="8%">글번호</th>
+                <th width="12%">모임종류</th>
+                <th width="35%">제목</th>
+                <th width="12%">작성자</th>
+                <th width="20%">게시일</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        <!--django 데이터--->
+        
+        {% for item in participant %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.meeting_category }}</td>
+            <td><a href="{% url 'meetings:read' item.id %}">{{ item.meeting_title }}</a></td>
+            <td>{{ item.meeting_writer }}</td>
+            <td>{{ item.created_at }}</td>
+        </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+<button type="button" onclick="topFunction()" class="scrollBtn" id="myBtn">Top</button>
+
+{% endblock %}

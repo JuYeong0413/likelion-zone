@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+<div class="container" id="top-htj">
+    <div class="row">
+        <h1 class="content-name-htj" class="col-12">모임 검색 결과</h1>
+        <h3 class="sub-content-name-htj inline-htj col-12">
+            <div class="colored-red-htj inline-htj">{{search_keyword}}</div>
+            이 제목에 포함된 결과입니다.
+        </h3>
+    </div>
+    <br>
+    <div class="row">
+        <!--테이블 위 버튼셋-->
+        <div class="input-group col">
+            <button class="btn btn-outline-secondary" type="button">
+                <a style="text-decoration:none; color:black" 
+                href="{% url 'meetings:create' %}">모임개설하기</a>
+            </button>
+        </div>
+        <form action="{% url 'meetings:search' %}">
+            <div class="input-group col-12">     
+                <input type="text" class="form-control" placeholder="검색어" name="search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">
+                        검색
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <table class="table table-bordered table-htj">
+        <thead>
+            <tr class="tr-list-htj">
+                <th width="8%">글번호</th>
+                <th width="12%">모임종류</th>
+                <th width="35%">제목</th>
+                <th width="12%">작성자</th>
+                <th width="20%">게시일</th>
+                <th width="12%">조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+        <!--django 데이터--->
+        {% for result in search_result %}
+        <tr>
+            <td>{{ result.id }}</td>
+            <td>{{ result.category }}</td>
+            <td><a href="{% url 'meetings:read' result.id %}">{{ result.title }}</a></td>
+            <td>{{ result.writer }}</td>
+            <td>{{ result.created_at }}</td>
+            <td>{{ result.view_count }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<table>
+		
+		
+				<tr>
+					<td class="column1"></td>
+					<td class="column2"></td>
+					<td class="column3"></td>
+					<td class="column4"></td>
+					<td class="column5"></td>
+					<td class="column6"></td>
+				</tr>
+				
+				
+				
+	
+	</table>
+
+<button type="button" onclick="topFunction()" class="scrollBtn" id="myBtn">Top</button>
+
+{% endblock %}

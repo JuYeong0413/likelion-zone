@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+	<br>
+	<br>
+	 {% if request.GET.action == "edit" %}
+	<h1 class="content-name-htj">글 수정하기</h1>
+	<div style="width:max-content-center">
+		<h2 class="chr">글을 수정하기 위해 비밀번호를 입력해 주세요.</h2>
+	</div>
+	 {% endif %}
+	<h2 class="chr"> {% if request.GET.action == "delete" %} 글을 삭제하기 위해 비밀번호를 입력해 주세요. 삭제된 글은 복구할 수 없습니다. {% endif %} </h2>
+	{% if request.GET.action == "show_participants" %}
+	<h2 class="chr">모임 신청자 명단을 확인하기 위해 비밀번호를 입력해 주세요.</h2> {% endif %}
+	<!--<h2 class='chr' style="width:max-content-center">비밀번호를 입력해주세요</h2>-->
+	<div class="titlechr">
+	</div>
+	<form class="form-horizontal" action="{% url 'meetings:check_pwd'%}" method="POST">
+		 {% csrf_token %} <input type="hidden" name="action" value="{{ request.GET.action }}">
+		<input type="hidden" name="id" value="{{ request.GET.id }}">
+		<div class="input-group col-6">
+				<div class="input-group col-12">
+					<input type="password" class="form-control" id="inputpassword3" placeholder="password" name="password" required>
+					<div class="input-group-append" id="button-addon4">
+						<input type="submit" class="btn btn-outline-secondary btntj" value="확인"></button>
+						<a href="{% url 'meetings:list' %}" class="btn btn-outline-secondary btntj">취소</a>
+					</div>
+			</div>
+		</div>
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<p>
+	    <br><br>
+	    <br><br>
+	    <br><br>
+	    <br><br>
+        <h1 id="fail-font-gtj"><center>비밀번호가 틀렸습니다.</center></h1>
+        <h2 id="fail-font-gtj"><center>비밀번호를 잊어버리셨다면 개발자에게 문의해주세요 !</center></h2>
+    </p>
+    
+    <form action="#" method="POST">
+        {% csrf_token %}
+        <div id="fail-background-gtj">
+        <!--<div class="d-flex row-container justify-content-center main-container">-->
+            <!--<input type="button" class="btn btn-outline-info" onclick="history.back()" value="비밀번호 다시 입력하기"> &nbsp; &nbsp;-->
+            <!--<a href="#" class="btn btn-outline-info" onclick="GoBackWithRefresh();">비밀번호 다시 입력하기</a> &nbsp; &nbsp;-->
+            <!--<input type="submit" class="btn btn-outline-success" id="list" value="모임 목록으로 돌아가기">-->
+        <!--    <button type="submit" class="btn btn-outline-secondary btntj">Submit</button>-->
+        <!--</div>-->
+        <br>
+        <div style="text-align:center">
+        <a class="btn btn-outline-secondary btntj" onclick="GoBackWithRefresh();">비밀번호 다시 입력하기</a>
+        </div>
+    </form>
+
+<script>
+function GoBackWithRefresh(event) {
+    if ('referrer' in document) {
+        window.location = document.referrer;
+        /* OR */
+        //location.replace(document.referrer);
+    } else {
+        window.history.back();
+    }
+}
+</script>
+{% endblock %}

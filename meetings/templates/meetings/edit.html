@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<script
+  src="http://code.jquery.pantcom/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+	<title>ardi project</title>
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<link href="ardi.css" rel="stylesheet">
+</head>
+<body>
+    <br><br>
+	<body style="overflow-x:hidden">
+<form class="form-horizontal" action="{% url 'meetings:update' meeting.pk %}" method="POST">
+	{% csrf_token %}
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">모임구분</label>
+		<div class="col-xs-2">
+				<select class="form-control" name="category">
+				    {% ifequal meeting.category '스터디' %}
+				        <option value ="스터디" selected="selected">스터디</option>
+				        <option value = "강의">강의</option>
+                    	  <option value = "번개모임">번개모임</option>
+                    	  <option value = "그외">그외</option>
+				    {% endifequal %}
+				    {% ifequal meeting.category '강의' %}
+				        <option value ="스터디">스터디</option>
+				        <option value = "강의" selected="selected">강의</option>
+                    	  <option value = "번개모임">번개모임</option>
+                    	  <option value = "그외">그외</option>
+				    {% endifequal %}
+				    {% ifequal meeting.category '번개모임' %}
+				        <option value ="스터디">스터디</option>
+				        <option value = "강의">강의</option>
+                    	  <option value = "번개모임" selected="selected">번개모임</option>
+                    	  <option value = "그외">그외</option>
+				    {% endifequal %}
+				    {% ifequal meeting.category '그외' %}
+				        <option value ="스터디">스터디</option>
+				        <option value = "강의">강의</option>
+                    	  <option value = "번개모임">번개모임</option>
+                    	  <option value = "그외" selected="selected">그외</option>
+				    {% endifequal %}
+	  <!--<option value = "스터디">스터디</option>-->
+	  <!--<option value = "강의">강의</option>-->
+	  <!--<option value = "번개">번개</option>-->
+	  <!--<option value = "그외">그외</option>-->
+	</select>
+		</label>
+	</div>
+</div>
+
+
+		<div class="form-group">
+		   <label for="inputEmail3" class="col-sm-2 control-label">글제목</label>
+		   <div class="col-xs-3">
+		     <input type="name" class="form-control" id="inputEmail3" value ="{{ meeting.title }}" name="title">
+		   </div>
+    </div>
+
+
+		<div class="form-group">
+	    <label for="inputEmail3" class="col-sm-2 control-label">시간</label>
+	    <div class="col-xs-2">
+	      <input type="datetime" class="form-control" id="inputEmail3" value ="{{ meeting.meeting_time}}" name="meeting_time">
+	    </div>
+	  </div>
+
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-2 control-label">장소</label>
+			<div class="col-xs-2">
+				<input type="place" class="form-control" id="inputEmail3" value ="{{ meeting.meeting_place}}" name="meeting_place">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-2 control-label">최소인원</label>
+			<div class="col-xs-1">
+				<input type="number" class="form-control" id="inputEmail3" value = "{{ meeting.min_number }}" name="min_number">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-2 control-label">최대인원</label>
+			<div class="col-xs-1">
+				<input type="number" class="form-control" id="inputEmail3" value = "{{ meeting.max_number }}" name="max_number">
+			</div>
+		</div>
+
+			<div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">모임설명</label>
+		    <div class="col-xs-5">
+					<textarea class="form-control" rows="6" name="description">{{ meeting.description }}</textarea>
+		    </div>
+		  </div>
+
+	  <div class="form-group">
+	    <label for="inputPassword3" class="col-sm-2 control-label">비밀번호 설정</label>
+	    <div class="col-xs-2">
+	      <input type="text" class="form-control" id="inputPassword3" value = "{{ meeting.password}}" readonly>
+	    </div>
+  </div>
+
+	<hr class="divider">
+	<div class="form-group">
+		<label for="inputEmail3" class="col-sm-2 control-label">개설자 이름</label>
+		<div class="col-xs-1">
+			<input type="datetime" class="form-control" id="inputEmail3" value = "{{ meeting.writer }}" name="writer">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label for="inputEmail3" class="col-sm-2 control-label">이메일</label>
+		<div class="col-xs-2">
+			<input type="datetime" class="form-control" id="inputEmail3" value = "{{ meeting.writer_email }}" name="writer_email">
+		</div>
+	</div>
+
+        <hr class="divider">
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+			</div>
+
+</form>
+
+{% endblock %}

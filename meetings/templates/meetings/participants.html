@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h1 id="participants-head-gtj" class="content-name-htj">모임 참가자 목록</h1>
+<h3 class="sub-content-name-htj">{{ title }} 참가자 목록입니다.</h3>
+
+    <br>
+    <table class="table table-bordered table-htj">
+        <thead>
+            <tr class="tr-list-htj">
+                <th width="8%">순번</th>
+                <th width="13%">이름</th>
+                <th width="45%">참여동기</th>
+                <th width="15%">소속학교</th>
+                <th width="20%">이메일</th>
+            </tr>
+        </thead>
+    {% for item in participants %}
+        <tbody>
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.motive}}</td>
+            <td>{{item.school}}</td>
+            <td>{{item.email}}</td>
+           
+        </tr>
+        </tbody>
+    {% endfor %}
+    </table>
+</div>
+<table>
+</div>
+
+<button type="button" onclick="topFunction()" class="scrollBtn" id="myBtn">Top</button>
+</div>
+{% endblock %}
